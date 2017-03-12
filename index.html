@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="bower_components/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="bower_components/reveal.js/css/theme/white.css">
+    <style>
+      img {
+        border: none !important; // do not do this
+      }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+              <img src="img/hadoop_logo.png" style="box-shadow:none;" alt="Logo do Hadoop">
+              <h2>HDFS</h2>
+            </section>
+
+
+            <section>
+              <h2>O que é?</h2>
+              <p class="fragment current-visible">O HDFS é um projeto da Apache Software Foundation e um subprojeto do projeto Apache Hadoop.</p>
+              <p class="fragment current-visible">
+                O Hadoop foi criado para armazenar grandes quantidades de dados, de terabytes e pentabytes, e o HDFS é o sistema de armazenamento dele.
+              </p>
+            </section>
+
+
+            <section>
+              <h2>Qual problema ele veio resolver?</h2>
+
+              <p class="fragment fade-up">
+                <b>Portabilidade</b>:
+                Funciona em vários sistemas operacionais.
+              </p>
+
+              <p class="fragment fade-up">
+                <b>Escalabilidade</b>:
+                Armazenamento de grandes quantidades de dados distribuidos entre os clusters.
+              </p>
+
+              <p class="fragment fade-up">
+                <b>Tolerância a falhas</b>:
+                Recuperação de arquivos rápida e automática.
+              </p>
+
+            </section>
+
+
+            <section>
+              <h2>HDFS na prática</h2>
+              <img src="img/yahoo_logo.jpg" style="box-shadow:none;" alt="Logo da empresa Yahoo!">
+            </section>
+
+            <section>
+              <h2>Configuração</h2>
+              <p class="fragment fade-up">
+                Um cluster no Yahoo! possui em torno de 3500 nós HDFS. <br>
+                  Cada cluster possui: <br><br>
+                  <small>
+                    2 quad core Xeon processors @ 2.5ghz <br>
+                    Red Hat Enterprise Linux Server Release 5.1<br>
+                    Sun Java JDK 1.6.0_13-b03<br>
+                    4TB SATA drives<br>
+                    16GB RAM<br>
+                    1-gigabit Ethernet
+                  </small>
+              </p>
+
+              <p class="fragment fade-up">
+                70% (2.8TB) do disco é reservado exclusivamente para o HDFS. <br>
+                O resto (1.2TB) para o S.O, logs etc.
+              </p>
+            </section>
+
+            <section>
+              <h2>Configuração</h2>
+              asdasds
+            </section>
+        </div>
+    </div>
+
+  <script src="bower_components/reveal.js/js/reveal.js"></script>
+  <script>
+      Reveal.initialize({
+        history: true
+      });
+  </script>
+  </body>
+</html>
