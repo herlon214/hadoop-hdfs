@@ -22,15 +22,72 @@
 
             <section>
               <h2>O que é?</h2>
-              <p class="fragment current-visible">O HDFS é um projeto da Apache Software Foundation e um subprojeto do projeto Apache Hadoop.</p>
+              <p class="fragment current-visible">O HDFS é um projeto da Apache Software Foundation e um subprojeto do projeto Apache Hadoop, criado em 2005.</p>
               <p class="fragment current-visible">
-                O Hadoop foi criado para armazenar grandes quantidades de dados, de terabytes e pentabytes, e o HDFS é o sistema de armazenamento dele.
+                O Hadoop foi criado para armazenar grandes quantidades de dados, terabytes e pentabytes, e o HDFS é o sistema de armazenamento dele.
               </p>
             </section>
 
+            <section>
+              <h2>Um pouco de nomenclatura</h2>
+              <img src="img/nomenclatura.gif" alt="Reaction nomenclatura">
+            </section>
 
             <section>
-              <h2>Qual problema ele veio resolver?</h2>
+              <h2>Namespace</h2>
+              <small>É uma hierarquida de arquivos e diretórios em que o usuario ou um aplicativo pode criar e armazenar arquivos nele.</small>
+            </section>
+
+            <section>
+              <h2>NameNode</h2>
+              <small>
+                O HDFS é composto de Clusters que seriam computadores interligados que realizam a mesma tarefa. O Cluster HDFS consiste em um único nó conhecido como NAMENODE. <br><br>
+	O NameNode é quem gerencia o Namespace com operações do tipo abrir, fechar e renomear e também mapeiam blocos de dados até os nó de dados.
+              </small>
+            </section>
+
+            <section>
+              <h2>DataNodes</h2>
+              <small>São os nós de dados. Eles são capazes de criar, excluir e replicar blocos de dados.
+                <br><br> O DataNode uma réplica de um bloco que é representado por dois arquivos: o primeiro com os dados do cliente e o segundo seria os dados e selo de geração.</small>
+            </section>
+
+            <section>
+              <h2>NameNode X DataNode</h2>
+              <small>Basicamente na inicialização cada DataNode, ele se conecta com o NameNode e executa conexão ou um aperto de mão (realizando as conexões com protocolo TCP).
+                <br><br> Se o ID deles não corresponderem automaticamente realiza o desligamento da conexão. Esse ID é criado quando é formado o Namespace.</small>
+            </section>
+
+            <section>
+              <h2>HDFS cliente</h2>
+              <small>É basicamente o usuário utilizar mecanismos de interface para acessar o sistema de arquivo. <br><br>
+                Esse acesso é de forma convensional e suporta operações basicas as funções ler, escrever e apagar arquivos e também as operações de criar e de excluir diretórios.</small>
+            </section>
+
+            <section>
+              <h2>CheckpointNode</h2>
+              <small>
+                O CheckpointNode combina periodicamente o checkpoint existente e diário para criar um novo ponto de verificação.
+                <br><br>Assim ele previni e protege os metadados do sistema de arquivos, pois o sistema pode começar desde novo o ponto de verificação, o mais recente.
+              </small>
+            </section>
+
+            <section>
+              <h2>BackupNode</h2>
+              <small>
+                BackupNode é parecido com o CheckpointNode pois ele é capaz de criar pontos de verificação periódicos, porém ele cria uma imagem atualizada do namespace no sistema de arquivo sempre sincronizado com o estado do NameNode.
+              </small>
+            </section>
+
+            <section>
+              <h2>Upgrades, Snapshots do sistema de arquivos</h2>
+              <small>Quando atualizamos o software pode ser que ocorra bugs de software ou erros humanos e acaba que por conta disso o sistema se corrompe.<br>
+                 A opção de criar snapshots no HDFS tem como objetivo de minimizar os danos aos dados armazenados nos sistemas durante uma atualização. <br>
+                Ele permite que o administrador salve o ponto atual do sistema de arquivo e assim a atualização não resulta na perca ou no corrompimento dos dados.</small>
+            </section>
+
+            <section>
+              <h2>Vantagens</h2>
 
               <p class="fragment fade-up">
                 <b>Portabilidade</b>:
@@ -39,7 +96,7 @@
 
               <p class="fragment fade-up">
                 <b>Escalabilidade</b>:
-                Armazenamento de grandes quantidades de dados distribuidos entre os clusters.
+                Armazenamento de grandes quantidades de dados distribuidos entre os clusters horizontalmente.
               </p>
 
               <p class="fragment fade-up">
@@ -58,27 +115,106 @@
             <section>
               <h2>Configuração</h2>
               <p class="fragment fade-up">
-                Um cluster no Yahoo! possui em torno de 3500 nós HDFS. <br>
-                  Cada cluster possui: <br><br>
+                  <small>Um cluster grande na Yahoo! possui em torno de <strong>3500</strong> nós com:</small> <br><br>
                   <small>
                     2 quad core Xeon processors @ 2.5ghz <br>
                     Red Hat Enterprise Linux Server Release 5.1<br>
                     Sun Java JDK 1.6.0_13-b03<br>
-                    4TB SATA drives<br>
+                    4 SATA drives de 1TB<br>
                     16GB RAM<br>
                     1-gigabit Ethernet
                   </small>
               </p>
-
-              <p class="fragment fade-up">
-                70% (2.8TB) do disco é reservado exclusivamente para o HDFS. <br>
-                O resto (1.2TB) para o S.O, logs etc.
-              </p>
             </section>
 
             <section>
-              <h2>Configuração</h2>
-              asdasds
+              <h2>Divisão do HD</h2>
+              <img src="img/grafico_divisao_hd.png" style="box-shadow:none;" alt="Divisão do HD no Cluster">
+              70% (2.8TB) do disco é reservado exclusivamente para o HDFS. <br>
+              O resto (1.2TB) para o S.O, logs etc.
+            </section>
+
+
+            <section>
+              <h3>Legal, mas isso significa que tenho quanto de armazenamento?</h3>
+            </section>
+
+            <section>
+              <h1>9.8PB de armazenamento</h1>
+              <img src="img/armazenamento.gif" alt="Reaction armazenamento"> <br>
+              <small>3500 * 2.8TB = 9.8PB</small>
+            </section>
+
+            <section class="slide-out">
+              <h2>Tolerância a falhas</h2>
+              <img class="fragment current-visible fade-in" src="img/tolerancia_a_falhas.gif" alt="Tolerância à falhas">
+            </section>
+
+            <section>
+              <p class="fade-up">Os dados são replicados três vezes.</p>
+              <p class="fade-up fragment current-visible">A probabilidade de perder um bloco durante o ano é menor que 0.005%.</p>
+            </section>
+
+            <section>
+              <img src="img/fluxo_hdfs.jpg" style="box-shadow:none;" alt="Fluxo dos dados no HDFS">
+            </section>
+
+            <section>
+              <p>Aprox. 0.8% dos nós falham no mês</p>
+              <p class="fragment current-visible">O cluster é capaz de recriar <u>54 000 blocos</u> de um nó falho em DOIS MINUTOS. </p>
+            </section>
+
+            <section>
+              <table>
+    						<thead>
+    							<tr>
+    								<th>Operação</th>
+    								<th>Ops/s</th>
+    							</tr>
+    						</thead>
+    						<tbody>
+    							<tr>
+    								<td>Abrir um arquivo para leitura</td>
+    								<td>126 100</td>
+    							</tr>
+    							<tr>
+    								<td>Criar um arquivo</td>
+    								<td>5600</td>
+    							</tr>
+    							<tr>
+    								<td>Renomear um arquivo</td>
+    								<td>8300</td>
+    							</tr>
+                  <tr>
+    								<td>Deletar um arquivo</td>
+    								<td>20 700</td>
+    							</tr>
+                  <tr>
+    								<td>Hearbeat do DataNode</td>
+    								<td>300 000</td>
+    							</tr>
+                  <tr>
+    								<td>Relatório de blocos</td>
+    								<td>639 700</td>
+    							</tr>
+    						</tbody>
+    					</table>
+            </section>
+
+            <section class="fade-up">
+              <h2>Curiosidade</h2>
+              <img src="img/DougCuttingHadoopToy.jpg" alt="Criador do Hadoop Doug Cutting">
+              <small>Hadoop era o nome do elefante de pelúcia do filho de Doug Cutting (criador do Hadoop).</small>
+            </section>
+
+            <section>
+              <img src="img/hadoop_logo.png" style="box-shadow:none;" alt="Logo do Hadoop">
+              <h2>Obrigado !</h2>
+              <small>
+                Disponível em <a href="https://github.com/herlon214/hadoop-hdfs">https://github.com/herlon214/hadoop-hdfs</a> <br><br>
+                <small><a href="https://about.me/herlon214">Herlon Aguiar</a> | <a href="https://www.facebook.com/charles.nicoletti.7">Charles Nicoletti</a></small>
+              </small>
+              <br><a href="https://github.com/herlon214/hadoop-hdfs"><img src="img/github.png" style="box-shadow:none;" height="120" alt="Github logo"></a>
             </section>
         </div>
     </div>
